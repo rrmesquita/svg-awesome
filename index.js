@@ -9,6 +9,7 @@ class SvgAwesome {
         configObject.types.forEach(type => {
             // Entry file
             let entry = fs.readFileSync(configObject.entryDir + type.filename + '.svg', 'utf8')
+            entry = entry.replace(/&(?!(?:apos|quot|[gl]t|amp);|#)/g, '&amp;')
 
             // Map JSON to keep only selected glyphs
             let json = xml.xml2js(entry , { compact: true, spaces: 4 })
